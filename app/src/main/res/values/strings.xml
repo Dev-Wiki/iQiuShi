@@ -1,5 +1,11 @@
 <resources>
-    <string name="app_name">iQiuShi</string>
+    <string name="app_name">爱糗事</string>
     <string name="action_settings">Settings</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string name="function_qiushi">糗事</string>
+    <string name="function_qiuyouquan">糗友圈</string>
+    <string name="function_faxian">发现</string>
+    <string name="function_xiaozhitiao">小纸条</string>
+    <string name="function_wo">我</string>
 </resources>
