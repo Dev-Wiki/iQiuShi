@@ -7,205 +7,24 @@
     android:fitsSystemWindows="true"
     tools:context="net.devwiki.iqiushi.MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/nav_layout"
+    <net.devwiki.iqiushi.widget.NavView
+        android:id="@+id/nav_view"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_alignParentTop="true"
-        android:background="@color/nav_background">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:orientation="horizontal"
-            android:layout_alignParentLeft="true"
-            android:gravity="center_vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_ab_qiushi"
-                android:layout_marginLeft="16dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="8dp"
-                android:text="@string/app_name"
-                android:textSize="18sp"
-                android:textColor="@color/White"
-                android:layout_gravity="center_vertical"/>
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_centerVertical="true"
-            android:gravity="center_vertical"
-            android:layout_alignParentRight="true"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:src="@drawable/ic_audit"
-                android:padding="8dp"/>
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:clickable="true"
-                android:src="@drawable/ic_add_article"
-                android:padding="8dp"/>
-        </LinearLayout>
-    </RelativeLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/function_layout"
-        android:layout_above="@+id/function_layout"
+        android:layout_below="@+id/nav_view"
+        android:layout_above="@+id/function_view"
         android:background="@color/content_background">
 
     </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/function_layout"
+    <net.devwiki.iqiushi.widget.FunctionView
+        android:id="@+id/function_view"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="@color/White"
-        android:orientation="horizontal"
-        android:layout_alignParentBottom="true">
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_qiushi_select"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/function_qiushi"
-                android:textSize="11sp"
-                android:textColor="@color/function_text_select"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_qiuyoucircle_normal"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/function_qiuyouquan"
-                android:textSize="11sp"
-                android:textColor="@color/function_text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_nearby_normal"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/function_faxian"
-                android:textSize="11sp"
-                android:textColor="@color/function_text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_message_normal"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/function_xiaozhitiao"
-                android:textSize="11sp"
-                android:textColor="@color/function_text_normal"/>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:gravity="center_horizontal">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_mine_normal"
-                    android:layout_centerHorizontal="true"/>
-            </RelativeLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/function_wo"
-                android:textSize="11sp"
-                android:textColor="@color/function_text_normal"/>
-        </LinearLayout>
-    </LinearLayout>
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"/>
 </RelativeLayout>
