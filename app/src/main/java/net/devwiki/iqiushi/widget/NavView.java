@@ -9,6 +9,7 @@ import android.widget.RelativeLayout;
 import net.devwiki.iqiushi.R;
 
 /**
+ *
  * Created by zyz on 2016/3/3.
  */
 public class NavView extends RelativeLayout {
