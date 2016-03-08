@@ -32,5 +32,6 @@ public class NavView extends RelativeLayout {
 
     private void initView(Context context){
         rootView = LayoutInflater.from(context).inflate(R.layout.nav_view, this, true);
+
     }
 }
