@@ -27,7 +27,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 4;
+        return 2;
     }
 
     @Override
@@ -36,11 +36,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return context.getString(R.string.page_title_all_text);
             case 1:
-                return context.getString(R.string.page_title_pic_text);
-            case 2:
                 return context.getString(R.string.page_title_all_pic);
-            case 3:
-                return context.getString(R.string.page_title_video);
         }
         return null;
     }

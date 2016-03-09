@@ -12,14 +12,14 @@ public interface ContentType {
     int ALL_TEXT = 0;
 
     /**
-     * 内容类别:图文
-     */
-    int PIC_TEXT = 1;
-
-    /**
      * 内容类别:纯图
      */
-    int ALL_PIC = 2;
+    int ALL_PIC = 1;
+
+    /**
+     * 内容类别:图文
+     */
+    int PIC_TEXT = 2;
 
     /**
      * 内容类别:视频
