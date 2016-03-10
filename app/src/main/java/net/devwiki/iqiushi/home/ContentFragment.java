@@ -19,12 +19,17 @@ import net.devwiki.iqiushi.net.QiuShiApi;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import rx.Subscriber;
 
 /**
  * A placeholder fragment containing a simple view.
  */
 public class ContentFragment extends Fragment {
+
+    private static final String ARG_SECTION_NUMBER = "section_number";
 
     private static final String TAG = Fragment.class.getSimpleName();
 
@@ -40,19 +45,19 @@ public class ContentFragment extends Fragment {
 
     private QiuShiApi qiuShiApi;
 
-    public ContentFragment(int position) {
+    public ContentFragment(int contentType) {
         this.contentType = contentType;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        qiuShiApi = new QiuShiApi();
         initData();
     }
 
     private void initData(){
-        qiuShiApi = new QiuShiApi();
-        qiuShiApi.getTextQiuShi(page, 0).subscribe(new Subscriber<QiuShiResult>() {
+        qiuShiApi.getTextQiuShi(page, 30).subscribe(new Subscriber<QiuShiResult>() {
             @Override
             public void onCompleted() {
                 Log.i(TAG, "compete");
@@ -60,7 +65,7 @@ public class ContentFragment extends Fragment {
 
             @Override
             public void onError(Throwable e) {
-
+                Log.e(TAG, "error:" + e.getMessage());
             }
 
             @Override

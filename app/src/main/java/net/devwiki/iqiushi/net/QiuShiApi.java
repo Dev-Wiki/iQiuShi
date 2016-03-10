@@ -2,8 +2,14 @@ package net.devwiki.iqiushi.net;
 
 import net.devwiki.iqiushi.bean.QiuShiResult;
 
+import java.io.IOException;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 import rx.Observable;
+import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.schedulers.Schedulers;
 
@@ -20,8 +26,13 @@ public class QiuShiApi {
     public QiuShiApi(){
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
                 .build();
         qiuShiService = retrofit.create(QiuShiService.class);
+    }
+
+    public Call<QiuShiResult> getTextContent(int page, int count){
+        return qiuShiService.getTextContent(page, count);
     }
 
     /**
@@ -30,11 +41,22 @@ public class QiuShiApi {
      * @param count 每页数量,默认为30
      * @return
      */
-    public Observable<QiuShiResult> getTextQiuShi(int page, int count){
-        return qiuShiService
-                .getAllText(page, count)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread());
+    public Observable<QiuShiResult> getTextQiuShi(final int page, final int count){
+        return Observable.create(new Observable.OnSubscribe<QiuShiResult>() {
+            @Override
+            public void call(Subscriber<? super QiuShiResult> subscriber) {
+                Call<QiuShiResult> call = qiuShiService.getTextContent(page, count);
+                try {
+                    Response<QiuShiResult> response = call.execute();
+                    if (response.isSuccess()){
+                        subscriber.onNext(response.body());
+                        subscriber.onCompleted();
+                    }
+                } catch (Throwable e) {
+                    subscriber.onError(new Throwable());
+                }
+            }
+        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 
     /**
