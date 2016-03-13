@@ -23,7 +23,7 @@ public class HomePagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        return ContentFragment.newInstance(position + 1);
+        return new ContentFragment(position);
     }
 
     @Override
