@@ -7,6 +7,16 @@ package net.devwiki.iqiushi.constant;
 public interface ContentType {
 
     /**
+     * 文字类型
+     */
+    String WORD = "word";
+
+    /**
+     * 图片类型
+     */
+    String IMAGE = "image";
+
+    /**
      * 内容类别:纯文
      */
     int ALL_TEXT = 0;

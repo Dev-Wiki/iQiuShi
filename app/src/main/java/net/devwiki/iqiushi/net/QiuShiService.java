@@ -13,11 +13,8 @@ import rx.Observable;
 public interface QiuShiService {
 
     @GET("/article/list/text")
-    Call<QiuShiResult> getTextContent(@Query("page") int page, @Query("count") int count);
-
-    @GET("/article/list/text")
-    Observable<QiuShiResult> getAllText(@Query("page") int page, @Query("count") int count);
+    Call<QiuShiResult> getAllText(@Query("page") int page, @Query("count") int count);
 
     @GET("/article/list/imgrank")
-    Observable<QiuShiResult> getAllPic(@Query("page") int page, @Query("count") int count);
+    Call<QiuShiResult> getAllPic(@Query("page") int page, @Query("count") int count);
 }
