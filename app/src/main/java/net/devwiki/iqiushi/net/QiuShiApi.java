@@ -1,17 +1,16 @@
 package net.devwiki.iqiushi.net;
 
+/**
+ * Created by Asia on 2016/3/13 0013.
+ */
 import android.content.Context;
 
 import net.devwiki.iqiushi.bean.QiuShiResult;
 import net.devwiki.iqiushi.constant.QiuShiUrl;
 
-import java.io.IOException;
-
 import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
-import retrofit2.http.Query;
 import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
@@ -22,6 +21,8 @@ import rx.schedulers.Schedulers;
  * Created by zyz on 2016/3/9.
  */
 public class QiuShiApi {
+
+
 
     private final QiuShiService qiuShiService;
     private Context context;

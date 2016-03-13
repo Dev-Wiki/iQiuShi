@@ -15,7 +15,7 @@ import net.devwiki.iqiushi.R;
 import net.devwiki.iqiushi.bean.ItemsEntity;
 import net.devwiki.iqiushi.bean.QiuShiResult;
 import net.devwiki.iqiushi.constant.ContentType;
-import net.devwiki.iqiushi.net.QiuShiManager;
+import net.devwiki.iqiushi.net.QiuShiApi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,7 +41,7 @@ public class ContentFragment extends Fragment {
     private int contentType = ContentType.ALL_TEXT;
     private int page = 1;
 
-    private QiuShiManager qiuShiApi;
+    private QiuShiApi qiuShiApi;
     private QiuShiAdapter qiuShiAdapter;
     private List<ItemsEntity> entityList;
 
@@ -58,7 +58,7 @@ public class ContentFragment extends Fragment {
     }
 
     private void initData(){
-        qiuShiApi = new QiuShiManager(getActivity());
+        qiuShiApi = new QiuShiApi(getActivity());
         entityList = new ArrayList<>();
         qiuShiAdapter = new QiuShiAdapter(getContext(), entityList);
     }
