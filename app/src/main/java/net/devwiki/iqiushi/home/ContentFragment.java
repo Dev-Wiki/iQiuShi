@@ -10,13 +10,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.RelativeLayout;
 
 import net.devwiki.iqiushi.R;
 import net.devwiki.iqiushi.bean.ItemsEntity;
 import net.devwiki.iqiushi.bean.QiuShiResult;
 import net.devwiki.iqiushi.constant.ContentType;
-import net.devwiki.iqiushi.net.QiuShiApi;
+import net.devwiki.iqiushi.net.QiuShiManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +41,7 @@ public class ContentFragment extends Fragment {
     private int contentType = ContentType.ALL_TEXT;
     private int page = 1;
 
-    private QiuShiApi qiuShiApi;
+    private QiuShiManager qiuShiApi;
     private QiuShiAdapter qiuShiAdapter;
     private List<ItemsEntity> entityList;
 
@@ -59,7 +58,7 @@ public class ContentFragment extends Fragment {
     }
 
     private void initData(){
-        qiuShiApi = new QiuShiApi(getActivity());
+        qiuShiApi = new QiuShiManager(getActivity());
         entityList = new ArrayList<>();
         qiuShiAdapter = new QiuShiAdapter(getContext(), entityList);
     }
