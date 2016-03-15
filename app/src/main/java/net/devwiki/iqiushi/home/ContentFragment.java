@@ -12,10 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import net.devwiki.iqiushi.R;
-import net.devwiki.iqiushi.bean.ItemsEntity;
-import net.devwiki.iqiushi.bean.QiuShiResult;
-import net.devwiki.iqiushi.constant.ContentType;
+import net.devwiki.iqiushi.bean.QiuShi;
+import net.devwiki.iqiushi.bean.net.ItemsEntity;
+import net.devwiki.iqiushi.bean.net.QiuShiResult;
+import net.devwiki.iqiushi.constant.QiuShiConstant;
 import net.devwiki.iqiushi.net.QiuShiApi;
+import net.devwiki.iqiushi.net.QiuShiManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,23 +35,29 @@ public class ContentFragment extends Fragment {
 
     private static final String TAG = Fragment.class.getSimpleName();
 
+    private static final String QIUSHI_FORMAT = "qiuShiFormat";
+
     @Bind(R.id.recycler_view)
     RecyclerView recyclerView;
     @Bind(R.id.refresh_layout)
     SwipeRefreshLayout refreshLayout;
 
-    private int contentType = ContentType.ALL_TEXT;
+    private int qiuShiFormat = QiuShiConstant.Format.ALL_TEXT;
     private int page = 1;
 
-    private QiuShiApi qiuShiApi;
+    private QiuShiManager qiuShiManager;
     private QiuShiAdapter qiuShiAdapter;
-    private List<ItemsEntity> entityList;
+    private List<QiuShi> qiuShiList;
+
+    public ContentFragment newInstance(int qiuShiFormat){
+        ContentFragment fragment = new ContentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(QIUSHI_FORMAT, qiuShiFormat);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
 
     public ContentFragment(){}
-
-    public ContentFragment(int contentType) {
-        this.contentType = contentType;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -58,9 +66,10 @@ public class ContentFragment extends Fragment {
     }
 
     private void initData(){
-        qiuShiApi = new QiuShiApi(getActivity());
-        entityList = new ArrayList<>();
-        qiuShiAdapter = new QiuShiAdapter(getContext(), entityList);
+        qiuShiFormat = getArguments().getInt(QIUSHI_FORMAT, QiuShiConstant.Format.ALL_TEXT);
+        qiuShiManager = QiuShiManager.getManager(getContext());
+        qiuShiList = new ArrayList<>();
+        qiuShiAdapter = new QiuShiAdapter(getContext(), qiuShiList);
     }
 
     @Override
@@ -86,29 +95,8 @@ public class ContentFragment extends Fragment {
     }
 
     private void refreshData(){
-        qiuShiApi.getTextQiuShi(page, 30).subscribe(new Subscriber<QiuShiResult>() {
-            @Override
-            public void onCompleted() {
-                Log.i(TAG, "compete");
-                page++;
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                Log.e(TAG, "error:" + e.getMessage());
-            }
-
-            @Override
-            public void onNext(QiuShiResult qiuShiResult) {
-                Log.i(TAG, "count:" + qiuShiResult.getCount());
-                if (qiuShiResult == null){
-                    return;
-                }
-                entityList.addAll(qiuShiResult.getItems());
-                qiuShiAdapter.notifyDataSetChanged();
-                refreshLayout.setRefreshing(false);
-            }
-        });
+        qiuShiManager.getWordQiuShi(page, 30)
+                .
     }
 
     @Override

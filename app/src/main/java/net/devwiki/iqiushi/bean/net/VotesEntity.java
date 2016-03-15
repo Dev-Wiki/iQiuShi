@@ -1,4 +1,4 @@
-package net.devwiki.iqiushi.bean;
+package net.devwiki.iqiushi.bean.net;
 
 /**
  * 一条糗事的投票

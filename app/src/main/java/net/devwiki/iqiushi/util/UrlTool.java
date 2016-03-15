@@ -2,7 +2,7 @@ package net.devwiki.iqiushi.util;
 
 import android.text.TextUtils;
 
-import net.devwiki.iqiushi.constant.QiuShiUrl;
+import net.devwiki.iqiushi.constant.QiuShiConstant;
 
 /**
  * 处理糗事链接的工具类
@@ -35,7 +35,7 @@ public class UrlTool {
         if (headName == null){
             headName = "";
         }
-        return QiuShiUrl.PIC_HOST + QiuShiUrl.HEAD_PATH + dirName + "/" + uuid + "/medium/" + headName;
+        return QiuShiConstant.URL.PIC_HOST + QiuShiConstant.URL.HEAD_PATH + dirName + "/" + uuid + "/medium/" + headName;
     }
 
     /**
@@ -61,6 +61,6 @@ public class UrlTool {
         if (imageName == null){
             imageName = "";
         }
-        return QiuShiUrl.PIC_HOST + QiuShiUrl.PIC_PATH + dirName + "/" + uuid + "/medium/" + imageName;
+        return QiuShiConstant.URL.PIC_HOST + QiuShiConstant.URL.PIC_PATH + dirName + "/" + uuid + "/medium/" + imageName;
     }
 }

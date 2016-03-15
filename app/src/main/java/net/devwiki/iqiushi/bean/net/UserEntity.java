@@ -1,4 +1,4 @@
-package net.devwiki.iqiushi.bean;
+package net.devwiki.iqiushi.bean.net;
 
 /**
  * 发糗事的用户

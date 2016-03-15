@@ -2,20 +2,20 @@ package net.devwiki.iqiushi.home;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import net.devwiki.iqiushi.R;
-import net.devwiki.iqiushi.bean.ItemsEntity;
-import net.devwiki.iqiushi.bean.QiuShiResult;
-import net.devwiki.iqiushi.bean.UserEntity;
+import net.devwiki.iqiushi.bean.QiuShi;
+import net.devwiki.iqiushi.bean.WordQiuShi;
+import net.devwiki.iqiushi.bean.net.ItemsEntity;
+import net.devwiki.iqiushi.bean.net.UserEntity;
+import net.devwiki.iqiushi.constant.QiuShiConstant;
 import net.devwiki.iqiushi.util.UrlTool;
 import net.devwiki.iqiushi.widget.CropSquareTransformation;
 
@@ -45,11 +45,11 @@ public class QiuShiAdapter extends RecyclerView.Adapter<QiuShiAdapter.ViewHolder
     }
 
     private Context context;
-    private List<ItemsEntity> entityList;
+    private List<QiuShi> qiuShiList;
 
-    public QiuShiAdapter(Context context, List<ItemsEntity> itemsEntityList){
+    public QiuShiAdapter(Context context, List<QiuShi> qiuShiList){
         this.context = context;
-        this.entityList = itemsEntityList;
+        this.qiuShiList = qiuShiList;
     }
 
     @Override
@@ -60,37 +60,24 @@ public class QiuShiAdapter extends RecyclerView.Adapter<QiuShiAdapter.ViewHolder
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        ItemsEntity itemsEntity = entityList.get(position);
-        if (itemsEntity == null){
-            return;
-        }
-        UserEntity userEntity = itemsEntity.getUser();
-        if (userEntity != null) {
-            if (userEntity.getLogin() != null) {
-                holder.nameView.setText(userEntity.getLogin());
-            }
+        QiuShi qiuShi = qiuShiList.get(position);
+        holder.nameView.setText(qiuShi.getPubName());
+        String headUrl = UrlTool.getHeadUrl(String.valueOf(qiuShi.getPubUid()), qiuShi.getPubHead());
+        Log.i(TAG, "url:" + headUrl);
+        Picasso.with(context)
+                .load(headUrl)
+                .transform(new CropSquareTransformation())
+                .into(holder.headView);
+        if (qiuShi.getFormat().equals(QiuShiConstant.Format.WORD)){
+            WordQiuShi wordQiuShi = (WordQiuShi) qiuShi;
+            holder.contentView.setText(wordQiuShi.getContent());
+        } else {
 
-            if (userEntity.getIcon() != null) {
-                String headUrl = UrlTool.getHeadUrl(String.valueOf(userEntity.getUid()), userEntity.getIcon());
-                Log.i(TAG, "url:" + headUrl);
-                Picasso.with(context)
-                        .load(headUrl)
-                        .transform(new CropSquareTransformation())
-                        .into(holder.headView);
-            }
-        }
-
-        if (itemsEntity.getContent() != null){
-            holder.contentView.setText(itemsEntity.getContent());
         }
     }
 
     @Override
     public int getItemCount() {
-        if (entityList == null){
-            return 0;
-        } else {
-            return entityList.size();
-        }
+        return qiuShiList==null ? 0 : qiuShiList.size();
     }
 }
